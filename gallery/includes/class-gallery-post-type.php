@@ -8,6 +8,9 @@ class Gallery_Post_Type {
 		
 		add_action( 'init', array( __CLASS__, 'register_gallery_taxonomies' ),6 );
 		add_action( 'init', array( __CLASS__, 'register_gallery_post' ) ,6);
+		
+		add_action( 'add_meta_boxes', array( __CLASS__, 'register_gallery_meta_box' ) );
+
 		add_action( 'flush_url_after_register_post_type', array( __CLASS__, 'flush_rewrite_rules' ) );
 	
 	}
@@ -82,6 +85,26 @@ class Gallery_Post_Type {
 			apply_filters(
 				'taxonomy_args_gallery_type', $arg)
 		);
+	}
+	public static function register_gallery_meta_box()
+	{
+		add_meta_box( 'gallery-image', __( 'Gallery Images', 'gallery' ), array( __CLASS__, 'display_gallery_meta_box' ), 'gallery' );
+	}
+	public static function display_gallery_meta_box($post)
+	{
+		wp_enqueue_media();
+		wp_enqueue_style('gallery-images-css',get_stylesheet_directory_uri().'/css/gallery-css.css');
+		wp_enqueue_script('image-js',get_stylesheet_directory_uri().'/js/images.js',array('jquery'),true,time());
+
+		echo "<input id='upload_image_button' type='button' class='button' value='". __( 'Upload image' )."' />
+			<input type='hidden' name='image_attachment_id' id='image_attachment_id' value='".get_option( 'media_selector_attachment_id' )."'>
+				<div class='image-preview-wrapper'>
+				<ul id='sortable' class='connectedli'>
+				</ul>
+				<div class='clear'></div>
+					
+				</div>";
+
 	}
 	public static function flush_rewrite_rules() {
 		flush_rewrite_rules();

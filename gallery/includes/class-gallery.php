@@ -1,7 +1,6 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-
 final class Gallery 
 {
 	protected static $_instance = null;
