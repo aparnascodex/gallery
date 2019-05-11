@@ -1,4 +1,6 @@
 <?php
+
+//Git repo- https://github.com/aparnascodex/gallery.git
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
