@@ -1,6 +1,4 @@
 jQuery( document ).ready( function( $ ) {
-	
-
 	jQuery('.connectedli').sortable();
 	jQuery('.connectedli').disableSelection();
 	var file_frame;
