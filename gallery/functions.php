@@ -9,3 +9,5 @@ if ( ! class_exists( 'Gallery' ) ) {
 	include_once dirname( __FILE__ ) . '/includes/class-gallery.php';
 }
 Gallery::instance();
+
+//Testing issues
